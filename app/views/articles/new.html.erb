@@ -1,0 +1,18 @@
+<%= form_for @article, :url => { :action => "create" } do |form| %>
+  <% if @article.errors.present? %>
+    <ul>
+      <% @article.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <h2>Enter Your Article Name Here</h2>
+  <%= form.text_field :title %>
+  
+  <h2>Insert the Link to Your Article Here</h2>
+  <%= form.text_field :link %>
+
+
+  <%= form.submit "Create" %>
+<% end %>
