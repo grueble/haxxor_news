@@ -19,8 +19,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '~> 2.3'
-  
-  #https://github.com/thomas-mcdonald/bootstrap-sass 
 end
 
 gem 'jquery-rails'
