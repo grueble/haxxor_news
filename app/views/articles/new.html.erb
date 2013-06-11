@@ -7,12 +7,12 @@
     </ul>
   <% end %>
   
-  <h2>Enter Your Article Name Here</h2>
+  <%= form.label :title %>
   <%= form.text_field :title %>
-  
-  <h2>Insert the Link to Your Article Here</h2>
+  <br>
+  <%= form.label :link %>
   <%= form.text_field :link %>
 
-
+  <br>
   <%= form.submit "Create" %>
 <% end %>
