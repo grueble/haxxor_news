@@ -17,9 +17,8 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.all
-    respond_to do |format| 
-      format.html
-    end
+    @articles = Article.all.sort { 
+      |a, b| a.id <=> b.id }
+    respond_to (:html)
   end
 end

@@ -1,7 +1,7 @@
 <% @articles.each do |article| %>
   <%= link_to article.title, article.link %>
   (<%= article.domain %>)
-  <%= article.created_at %>
+  <%= "posted #{time_ago_in_words(article.created_at)} ago" %>
   <%= link_to 'Show', article %>
   <br>
 <% end %>
