@@ -1,0 +1,10 @@
+<% @articles.each do |article| %>
+  <%= link_to article.title, article.link %>
+  (<%= article.domain %>)
+  <%= article.created_at %>
+  <%= link_to 'Show', article %>
+  <br>
+<% end %>
+
+<br>
+<%= link_to 'New Article', new_article_path %>
