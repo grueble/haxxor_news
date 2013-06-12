@@ -11,4 +11,8 @@ class Article < ActiveRecord::Base
       errors.add(:link, "must be a valid URI")
     end
   end
+  
+  def self.domain
+    URI.parse(:link).host
+  end
 end

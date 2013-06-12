@@ -18,7 +18,7 @@ describe "the article subimission process" do
     fill_in 'Title', :with => ''
     fill_in 'Link', :with => ''
   
-    click_button 'Create'
+    expect{ click_button 'Create' }.to_not change{ Article.count }
     
     page.should have_content "Title can't be blank"
   end
