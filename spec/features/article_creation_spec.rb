@@ -7,7 +7,7 @@ describe "the article subimission process" do
     fill_in 'Title', :with => 'My Article'
     fill_in 'Link', :with => 'http://example.com'
     
-    click_button 'Create'
+    expect{ click_button 'Create' }.to change{ Article.count }.by(1)
     
     page.should have_content 'My Article'
   end
