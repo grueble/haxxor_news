@@ -24,4 +24,12 @@ describe Article do
       subject.should be_valid
     end
   end
+  
+  context 'testing domain method' do
+    subject { Article.new(:title => "My Title", :link => "http://www.example.com/location") }
+    
+    it "correctly isolates the domain of the URI" do
+      subject.domain == "www.example.com"
+    end
+  end
 end

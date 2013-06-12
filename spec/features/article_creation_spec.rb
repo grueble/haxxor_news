@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "the article subimission process" do
+describe "the article submission process" do
   it "creates an article" do
     visit '/articles/new'
     

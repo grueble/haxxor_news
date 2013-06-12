@@ -4,6 +4,10 @@ class Article < ActiveRecord::Base
   
   validate :link_is_a_valid_uri
   
+  def domain
+    URI.parse(link).host
+  end
+  
   private
   
   def link_is_a_valid_uri
@@ -12,7 +16,4 @@ class Article < ActiveRecord::Base
     end
   end
   
-  def self.domain
-    URI.parse(:link).host
-  end
 end
