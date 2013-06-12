@@ -1,4 +1,7 @@
 HaxxorNews::Application.routes.draw do
+  resources :articles , :only => [ :show, :new, :create ]
+  root :to => 'articles#new'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
