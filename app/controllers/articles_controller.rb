@@ -17,6 +17,6 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.order("created_at DESC")
+    @articles = Article.by_created_at
   end
 end
