@@ -16,5 +16,7 @@ class ArticlesController < ApplicationController
     end
   end
   
-  
+  def index
+    @articles = Article.by_created_at
+  end
 end

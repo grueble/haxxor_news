@@ -3,11 +3,13 @@ class Article < ActiveRecord::Base
   validates :title, :link, :presence => true
   
   validate :link_is_a_valid_uri
-  
+
+  scope :by_created_at, order("created_at DESC")
+
   def domain
     URI.parse(link).host
   end
-  
+
   private
   
   def link_is_a_valid_uri

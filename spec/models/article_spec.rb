@@ -5,7 +5,16 @@ describe Article do
   it { should allow_mass_assignment_of(:link) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:link) }
-  
+
+  describe '.by_created_at' do
+    let!(:article1) { create(:article, :created_at => 10.seconds.ago, :title => "Second") }
+    let!(:article2) { create(:article, :created_at => 5.seconds.ago,  :title => "First") }
+    
+    it "returns all articles in the correct order" do
+      Article.by_created_at.should == [ article2, article1 ]
+    end
+  end
+
   context 'validating link' do
     subject { Article.new(:title => "My Title") }
     
