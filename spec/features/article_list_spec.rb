@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe "the article listing process" do
+  let!(:article1) { Article.create(:title => "First", :link => "http://www.example.com") }
+  let!(:article2) { Article.create(:title => "Second", :link => "http://www.example.com") }
+  
   it "lists all articles" do
-    article1 = Article.create(:title => "First", :link => "http://www.example.com")
-    
     visit '/articles'
     
     page.should have_content "First"
@@ -11,11 +12,8 @@ describe "the article listing process" do
   end
   
   it "lists articles in the proper order" do
-    article1 = Article.create(:title => "First", :link => "http://www.example.com")
-    article2 = Article.create(:title => "Second", :link => "http://www.example.com")
-    
-    article1.created_at = Time.now - 1.day
-    article2.created_at = Time.now
+    article1.created_at = 10.seconds.ago 
+    article2.created_at = 5.seconds.ago 
     
     visit '/articles'
     
