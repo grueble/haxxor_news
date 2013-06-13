@@ -12,11 +12,13 @@ describe "the article listing process" do
   
   it "lists articles in the proper order" do
     article1 = Article.create(:title => "First", :link => "http://www.example.com")
-    sleep(5.seconds)
     article2 = Article.create(:title => "Second", :link => "http://www.example.com")
+    
+    article1.created_at = Time.now - 1.day
+    article2.created_at = Time.now
     
     visit '/articles'
     
-    Article.first.id == article1.id
+    Article.first.id.should equal(article1.id)
   end
 end
