@@ -1,5 +1,5 @@
 HaxxorNews::Application.routes.draw do
-  resources :articles, :only => [ :show, :new, :create, :index ]
+  resources :articles, :users, :only => [ :show, :new, :create, :index ]
   root :to => 'articles#index'
   
   # The priority is based upon order of creation:

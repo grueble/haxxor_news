@@ -19,6 +19,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '~> 2.3'
+  gem 'bcrypt-ruby', '~> 3.0.0'
 end
 
 gem 'jquery-rails'
