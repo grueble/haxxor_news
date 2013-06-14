@@ -17,5 +17,4 @@ class Article < ActiveRecord::Base
       errors.add(:link, "must be a valid URI")
     end
   end
-  
 end
