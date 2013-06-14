@@ -8,6 +8,15 @@
 </head>
 <body>
 
+  <div class="flash">
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <% if notice.present? %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+  </div>
+
 <%= yield %>
 
 </body>

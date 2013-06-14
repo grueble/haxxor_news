@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let!(:user1) { create(:user) }
-  
-  subject { user1 }
+  subject { create(:user) }
   
   it { should allow_mass_assignment_of(:username) }
   it { should allow_mass_assignment_of(:password) }
