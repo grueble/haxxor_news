@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe "the user creation process" do
   it "creates an account" do
     visit '/users/new'
