@@ -1,4 +1,4 @@
-<%= form_for @user do |form| %>
+<%= form_for @user, :html => {:class => 'form-horizontal' } do |form| %>
   <% if @user.errors.present? %>
     <ul>
       <% @user.errors.full_messages.each do |error| %>
@@ -7,15 +7,30 @@
     </ul>
   <% end %>
   
-  <%= form.label :username %>
-  <%= form.text_field :username %>
-  <br>
-  <%= form.label :password %>
-  <%= form.text_field :password %>
-  <br>
-  <%= form.label :password_confirmation %>
-  <%= form.text_field :password_confirmation %>
-
-  <br>
-  <%= form.submit "Create" %>
+  <fieldset>
+    <div class="control-group">
+      <%= form.label :username, :class => 'control-label' %>
+      <div class="controls">
+        <%= form.text_field :username %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= form.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= form.text_field :password %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= form.label :password_confirmation, :class => 'control-label' %>
+      <div class="controls">
+        <%= form.text_field :password_confirmation %>
+      </div>
+    </div>
+  </fieldset>
+  
+  <fieldset class="form-actions">
+    <%= form.submit "Create", :class => 'btn btn-primary' %>
+  </fieldset>
 <% end %>

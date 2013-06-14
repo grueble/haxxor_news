@@ -10,14 +10,16 @@
 
   <div class="flash">
     <% if alert.present? %>
-      <p class="alert"><%= alert %></p>
+      <p class="alert alert-error"><%= alert %></p>
     <% end %>
     <% if notice.present? %>
-      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= notice %></p>
     <% end %>
   </div>
 
-<%= yield %>
+  <div class="container" id="main-content">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
