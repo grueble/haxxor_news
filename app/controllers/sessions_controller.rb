@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :login_required, :only => [:new, :create]
+  
   def new; end
   
   def create
@@ -13,7 +15,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    @current_user = session[:current_user_id] = nil
+    @current_user = session[:current_user_id]
     redirect_to root_url, :notice => "You have successfully been signed out"
   end
 end
