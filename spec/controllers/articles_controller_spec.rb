@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe ArticlesController do
-  let!(:article) { Article.create(:title => "Title", :link => "http://www.example.com") }
+  let(:user) { create(:user) }
+  let!(:article) { create(:article) }
+
+  context 'logged in' do
+    before do
+      login_as(:user)
+    end
+  end
   
   describe 'GET #new' do
     before { get :new }

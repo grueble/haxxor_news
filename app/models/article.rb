@@ -5,6 +5,8 @@ class Article < ActiveRecord::Base
   validate :link_is_a_valid_uri
 
   scope :by_created_at, order("created_at DESC")
+  
+  belongs_to :user
 
   def domain
     URI.parse(link).host

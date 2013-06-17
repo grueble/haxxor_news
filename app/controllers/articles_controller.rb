@@ -1,4 +1,5 @@
-class ArticlesController < ApplicationController
+class ArticlesController < ApplicationController  
+  before_filter :login_required, :only => [:new, :create]
   
   def new
     @article = Article.new
