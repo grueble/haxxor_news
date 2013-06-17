@@ -8,7 +8,7 @@ describe SessionsController do
   describe 'POST #create' do
     before { post :create , :username => user.username, :password => "password" }
     it "creates a new session" do
-      session[:current_user_id].should == user.id
+      session[:current_user_id].should be_nil
     end
   end
   
