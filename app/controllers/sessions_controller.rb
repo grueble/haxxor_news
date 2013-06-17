@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    @current_user = session[:current_user_id] = nil
+    session[:current_user_id] = nil
     redirect_to root_url, :notice => "You have successfully been signed out"
   end
 end
