@@ -20,4 +20,11 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user.present?
   end
+  
+  def logout_required
+    unless !logged_in?
+      flash.now[:alert] = "You must be logged out to perform this action"
+      redirect_to root_url
+    end
+  end
 end
