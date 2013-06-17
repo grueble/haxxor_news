@@ -11,3 +11,10 @@
 
 <br>
 <%= link_to 'Create Account', new_user_path %>
+
+<br>
+<% if current_user.present? %>
+  <%= button_to("Sign Out", session_path, :method => 'delete', :class => 'btn btn-primary') %>
+<% else %>
+  <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
+<% end %>

@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe ArticlesController do
   let!(:article) { Article.create(:title => "Title", :link => "http://www.example.com") }
   

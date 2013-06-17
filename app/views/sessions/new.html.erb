@@ -1,0 +1,24 @@
+<%= form_tag session_path, :class => 'form-horizontal' do %>
+  <fieldset>
+    <div class="control-group">
+      <%= label_tag :username, nil, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :username %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= label_tag :password, nil, :class => 'control-label' %>
+      <div class="controls">
+        <%= password_field_tag :password %>
+      </div>
+    </div>
+  </fieldset>
+  
+  <fieldset class="form-actions">
+    <%= submit_tag "Sign In", :class => 'btn btn-primary' %>
+  </fieldset>
+<% end %>
+
+<br>
+<p>New user? <%= link_to "Sign up now!", new_user_path %></p>
