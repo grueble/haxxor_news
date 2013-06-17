@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :logout_required, :only => [:create]
+  
   def new
     @user = User.new
   end

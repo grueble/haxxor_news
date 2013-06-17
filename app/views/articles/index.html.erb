@@ -10,4 +10,9 @@
 <%= link_to 'New Article', new_article_path %>
 
 <br>
-<%= link_to 'Create Account', new_user_path %>
+<% if logged_in? %>
+  <%= button_to("Sign Out", session_path, :method => 'delete', :class => 'btn btn-primary') %>
+<% else %>
+  <%= link_to 'Create Account', new_user_path %>
+  <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
+<% end %>
