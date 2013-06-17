@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  skip_before_filter :login_required, :only => [:new, :show, :create, :index]
   
   def new
     @article = Article.new
