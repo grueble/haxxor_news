@@ -28,6 +28,7 @@ RSpec.configure do |config|
   #FactoryGirl syntax methods
   config.include FactoryGirl::Syntax::Methods
   config.include HaxxorNews::IntegrationHelper, :type => :feature
+  config.include HaxxorNews::AuthenticationHelper, :type => :controller
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

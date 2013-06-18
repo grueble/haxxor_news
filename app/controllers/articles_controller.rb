@@ -1,4 +1,5 @@
-class ArticlesController < ApplicationController
+class ArticlesController < ApplicationController  
+  before_filter :login_required, :only => [:new, :create]
   
   def new
     @article = Article.new
@@ -9,7 +10,7 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(params[:article])
+    @article = current_user.articles.build(params[:article])
     if @article.save
       redirect_to @article
     else

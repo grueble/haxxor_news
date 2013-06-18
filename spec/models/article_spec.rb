@@ -5,6 +5,9 @@ describe Article do
   it { should allow_mass_assignment_of(:link) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:link) }
+  it { should validate_presence_of(:user_id) }
+  
+  it { should belong_to(:user) }
 
   describe '.by_created_at' do
     let!(:article1) { create(:article, :created_at => 10.seconds.ago, :title => "Second") }
@@ -16,7 +19,7 @@ describe Article do
   end
 
   context 'validating link' do
-    subject { Article.new(:title => "My Title") }
+    subject { build(:article) }
     
     it "is invalid with a bad URI" do
       subject.link = "not a url"
@@ -35,7 +38,7 @@ describe Article do
   end
   
   context 'testing domain method' do
-    subject { Article.new(:title => "My Title", :link => "http://www.example.com/location") }
+    subject { build(:article, :link => "http://www.example.com/location") }
     
     it "correctly isolates the domain of the URI" do
       subject.domain == "www.example.com"
