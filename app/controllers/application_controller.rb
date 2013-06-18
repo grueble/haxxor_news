@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def logout_required
-    unless !logged_in?
+    if logged_in?
       flash[:alert] = "You must be logged out to perform this action"
       redirect_to root_url
     end

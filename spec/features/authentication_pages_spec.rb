@@ -22,9 +22,6 @@ describe "the sign in process" do
       
       page.should have_content "Invalid username/password combination"
     end
-    
-    it "is unable to sign a user out" do
-      
   end
 
   context 'signed in' do
