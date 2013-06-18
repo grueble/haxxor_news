@@ -17,9 +17,9 @@ describe User do
   it { should have_many(:articles) }
   
   describe '#to_s' do
-    subject { create(:user) }
+    let!(:user) { create(:user) }
     
-    it "returns the proper username value of user"do
+    it "returns the proper username value of username" do
       user.to_s.should == user.username
     end
   end
