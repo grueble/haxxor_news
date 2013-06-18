@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   attr_accessible :title, :link
-  validates :title, :link, :presence => true
+  validates :title, :link, :user_id, :presence => true
   
   validate :link_is_a_valid_uri
 
