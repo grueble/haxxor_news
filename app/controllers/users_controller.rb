@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :logout_required, :only => [:create]
+  before_filter :logout_required, :only => [:create, :new]
   
   def new
     @user = User.new

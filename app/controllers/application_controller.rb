@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   
   def login_required
     unless logged_in?
-      flash.now[:alert] = "You must be logged in to perform this action"
+      flash[:alert] = "You must be logged in to perform this action"
       redirect_to new_session_path
     end
   end
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   
   def logout_required
     unless !logged_in?
-      flash.now[:alert] = "You must be logged out to perform this action"
+      flash[:alert] = "You must be logged out to perform this action"
       redirect_to root_url
     end
   end
