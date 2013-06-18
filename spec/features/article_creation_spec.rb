@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "the article submission process" do
   let!(:user) { create(:user) }
   
-  it "is unable to create a new article" do
+  it "is unable to create a new article when not logged in" do
     visit '/articles/new'
     
     page.should have_content 'You must be logged in to perform this action'
