@@ -16,7 +16,7 @@ describe User do
 
   it { should have_many(:articles) }
   
-  describe '.to_s' do
+  describe '#to_s' do
     subject { create(:user) }
     
     it "returns the proper username value of user"do
