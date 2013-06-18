@@ -15,4 +15,12 @@ describe User do
   it { should ensure_length_of(:username).is_at_most(50) }
 
   it { should have_many(:articles) }
+  
+  describe '.to_s' do
+    let!(:user) { create(:user) }
+    
+    it "returns the proper username value of user"do
+      user.to_s.should == user.username
+    end
+  end
 end

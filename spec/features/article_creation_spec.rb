@@ -1,16 +1,17 @@
 require 'spec_helper'
 
 describe "the article submission process" do
-  let!(:tempuser) { create(:user, :username => "My Username", :password => "password", :password_confirmation => "password") }
+  let!(:user) { create(:user) }
+  
+  it "is unable to create a new article" do
+    visit '/articles/new'
+    
+    page.should have_content 'You must be logged in to perform this action'
+  end
   
   context 'signed in' do
     before do
-      visit '/session/new'
-
-      fill_in 'Username', :with => "My Username"
-      fill_in 'Password', :with => 'password'
-
-      click_button 'Sign In'
+      sign_in_as(user)
     end
     
     it "creates an article" do

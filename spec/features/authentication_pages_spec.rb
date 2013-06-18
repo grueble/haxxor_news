@@ -22,12 +22,6 @@ describe "the sign in process" do
       
       page.should have_content "Invalid username/password combination"
     end
-    
-    it "is unable to create a new article" do
-      visit '/articles/new'
-      
-      page.should have_content 'You must be logged in to perform this action'
-    end
   end
 
   context 'signed in' do
