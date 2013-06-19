@@ -1,7 +1,7 @@
 <% @articles.each do |article| %>
   <%= link_to article.title, article.link %>
   (<%= article.domain %>)
-  by <strong><%= link_to "#{article.user}", user_path(article) %></strong>
+  by <strong><%= link_to article.user.username, user_path(article) %></strong>
   posted <%= time_ago_in_words(article.created_at) %> ago
   <%= link_to 'Show', article %>
   <br>
