@@ -5,9 +5,14 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
   
+  def show
+    @comment = @article.comment.find(params[:id])
+  end
+  
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(params[:comment])
+    @comment.user = current_user
     if @comment.save
       redirect_to @article
     else

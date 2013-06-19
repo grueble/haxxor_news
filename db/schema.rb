@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130619025329) do
 
   create_table "comments", :force => true do |t|
     t.string   "body",             :null => false
+    t.integer  "user_id",          :null => false
     t.integer  "commentable_id",   :null => false
     t.string   "commentable_type", :null => false
     t.datetime "created_at",       :null => false
