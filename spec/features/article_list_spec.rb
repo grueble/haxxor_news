@@ -13,10 +13,7 @@ describe "the article listing process" do
   
   describe "the 20 articles per page limit" do
     before do
-      21.times do |n| 
-        create(:article, :title => "Title #{n}")
-        sleep(1)
-      end
+      21.times { |n| create(:article, :title => "Title #{n}", :created_at => Time.now + n.seconds) }
       visit '/articles'
     end
   
