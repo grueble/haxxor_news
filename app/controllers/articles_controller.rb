@@ -19,6 +19,6 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.by_created_at
+    @articles = Article.by_created_at.page(params[:page])
   end
 end
