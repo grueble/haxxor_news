@@ -9,6 +9,8 @@ describe Article do
   
   it { should belong_to(:user) }
 
+  it { should have_many(:comments) }
+
   describe '.by_created_at' do
     let!(:article1) { create(:article, :created_at => 10.seconds.ago, :title => "Second") }
     let!(:article2) { create(:article, :created_at => 5.seconds.ago,  :title => "First") }

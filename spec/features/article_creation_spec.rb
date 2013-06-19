@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe "the article submission process" do
-  let!(:user) { create(:user) }
-  
   it "is unable to create a new article when not logged in" do
     visit '/articles/new'
     
@@ -10,6 +8,8 @@ describe "the article submission process" do
   end
   
   context 'signed in' do
+    let(:user) { create(:user) }
+    
     before do
       sign_in_as(user)
     end

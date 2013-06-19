@@ -7,6 +7,8 @@ class Article < ActiveRecord::Base
   scope :by_created_at, order("created_at DESC")
   
   belongs_to :user
+  
+  has_many :comments, :as => :commentable
 
   def domain
     URI.parse(link).host
