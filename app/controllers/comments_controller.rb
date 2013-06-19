@@ -6,15 +6,15 @@ class CommentsController < ApplicationController
   end
   
   def show
-    @comment = @article.comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
   
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(params[:comment])
-    @comment.user = current_user
+    @comment = current_user.comments.build(params[:comment])
+    @comment.commentable = @article
     if @comment.save
-      redirect_to @article
+      redirect_to @article, :notice => "You have successfully posted a comment"
     else
       render 'articles/show'
     end

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20130619025329) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "body",             :null => false
+    t.text     "body",             :null => false
     t.integer  "user_id",          :null => false
     t.integer  "commentable_id",   :null => false
     t.string   "commentable_type", :null => false
