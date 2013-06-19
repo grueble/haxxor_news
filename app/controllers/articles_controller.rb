@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   
   def show
     @article = Article.find(params[:id])
-    @comment = Comment.new
+    @comment = Comment.new if logged_in?
   end
   
   def create
