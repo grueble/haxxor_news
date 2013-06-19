@@ -3,10 +3,8 @@ class Article < ActiveRecord::Base
   validates :title, :link, :user_id, :presence => true
   
   validate :link_is_a_valid_uri
-  
-  paginates_per 20
 
-  scope :by_created_at, order("created_at DESC")
+  scope :by_created_at, order("created_at DESC").page(params[:page])
   
   belongs_to :user
 
