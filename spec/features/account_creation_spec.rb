@@ -20,4 +20,4 @@ describe "the account creation process" do
     
     page.should have_content "Username can't be blank"
   end
-end
+end 

@@ -19,8 +19,8 @@ describe User do
   describe '#to_s' do
     subject { create(:user) }
     
-    it "returns the proper username value of user"do
-      user.to_s.should == user.username
+    it "returns the proper username value of username" do
+      subject.to_s.should == subject.username
     end
   end
 end
