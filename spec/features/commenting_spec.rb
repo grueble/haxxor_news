@@ -31,7 +31,7 @@ describe "the comment submission process" do
     it "is able to view an individual comment" do
       visit "/articles/#{article.id}/comments/#{comment.id}"
       
-      page.should have_content "Insert Text Here"
+      page.should have_content "Generic Text Submission"
     end
   end
 end
