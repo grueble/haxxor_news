@@ -19,4 +19,15 @@ class CommentsController < ApplicationController
       render 'articles/show'
     end
   end
+  
+  def reply
+    @comment_root = Comment.find(params[:commentable_id])
+    @comment_leaf = current_user.comments.build(params[:comment])
+    @comment_leaf.commentable = @comment_root
+    if @comment_leaf.save
+      redirect_to @comment_root, :notce => "You have successfully replied to a comment"
+    else
+      render 'comments/show'
+    end
+  end
 end
