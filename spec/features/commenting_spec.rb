@@ -25,11 +25,21 @@ describe "the comment submission process" do
       
       click_button "Add Comment"
       
-      page.should have_content "Body can't be blank"
+      page.should have_content "Comment must have text"
     end
     
     it "is able to view an individual comment" do
       visit "/comments/#{comment.id}"
+      
+      page.should have_content "Generic Text Submission"
+    end
+    
+    it "creates a comment on an comment" do
+      visit "/comments/#{comment.id}"
+      
+      fill_in 'comment_body', :with => "Generic Text Submission"
+      
+      click_button "Add Comment"
       
       page.should have_content "Generic Text Submission"
     end

@@ -7,34 +7,13 @@
 
 <% if logged_in? %>
 <br>
-  <%= form_for @comment, :url => article_comments_path(@article) do |form| %>
-    <% if @comment.errors.present? %>
-      <ul>
-        <% @comment.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    <% end %>
-    
-    <fieldset>
-      <%= form.hidden_field :commentable_id, :value => @article.id %>
-      <%= form.hidden_field :commentable_type, :value => 'Article' %>
-      <%= form.text_area(:body, :cols => 80, :rows => 10) %>
-    </fieldset>
-        
-    <fieldset>
-      <%= form.submit "Add Comment", :class => 'btn btn-primary' %>
-    </fieldset>
-  <% end %>
+  <%= render :partial => 'comments/form', :locals => {
+    :comment => @new_comment,
+    :commentable => @article } 
+  %>
 <% end %>
 
-<% @article.comments.each do |comment| %>
-  by <strong><%= link_to "#{comment.user}", user_path(comment.user) %></strong>
-  posted <%= time_ago_in_words comment.created_at %> ago
-  <%= link_to 'Show', comment_path(comment) %>
-  <br>
-  <%= comment.body %>
-<% end %>
+<%= render :partial => 'comments/list', :locals => { :comments => @article.comments } %>
   
 <% if !logged_in? %>
   <%= link_to 'Create Account', new_user_path %>
