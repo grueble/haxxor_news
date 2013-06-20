@@ -1,6 +1,34 @@
 <div>
-  by <strong><%= @comment.user %></strong>
+  by <strong><%= link_to @comment.user.username, user_path(@comment.user) %></strong>
   posted <%= time_ago_in_words @comment.created_at %> ago
   <br>
   <%= @comment.body %>
 </div>
+
+<% if logged_in? %>
+<br>
+  <%= form_for @comment_leaf, :url => reply_article_comment_path("____#{PARAMS}____") do |form| %>
+    <% if @comment_leaf.errors.present? %>
+      <ul>
+        <% @comment_leaf.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    
+    <fieldset>
+      <%= form.text_area(:body, :cols => 80, :rows => 10) %>
+    </fieldset>
+    
+    <fieldset>
+      <%= form.submit "Reply", :class => 'btn btn-primary' %>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<%# insert the indentation of nested comments here, similar to the feature in /app/views/articles/show.hmtl.erb%>
+
+<% if !logged_in? %>
+  <%= link_to 'Create Account', new_user_path %>
+  <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
+<% end %>
