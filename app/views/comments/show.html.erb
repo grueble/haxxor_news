@@ -7,16 +7,18 @@
 
 <% if logged_in? %>
 <br>
-  <%= form_for @comment_leaf, :url => reply_article_comment_path("____#{PARAMS}____") do |form| %>
-    <% if @comment_leaf.errors.present? %>
+  <%= form_for @comment, :url => article_comments_path(@comment.commentable) do |form| %>
+    <% if @comment.errors.present? %>
       <ul>
-        <% @comment_leaf.errors.full_messages.each do |error| %>
+        <% @comment.errors.full_messages.each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>
     <% end %>
     
     <fieldset>
+      <%= form.hidden_field :commentable_id, :value => @comment.id %>
+      <%= form.hidden_field :commentable_type, :value => 'Comment' %>
       <%= form.text_area(:body, :cols => 80, :rows => 10) %>
     </fieldset>
     
@@ -24,6 +26,14 @@
       <%= form.submit "Reply", :class => 'btn btn-primary' %>
     </fieldset>
   <% end %>
+<% end %>
+
+<% @comment.comments.each do |comment| %>
+  by <strong><%= link_to "#{comment.user}", user_path(comment.user) %></strong>
+  posted <%= time_ago_in_words comment.created_at %> ago
+  <%= link_to 'Show', comment_path(comment) %>
+  <br>
+  <%= comment.body %>
 <% end %>
 
 <%# insert the indentation of nested comments here, similar to the feature in /app/views/articles/show.hmtl.erb%>

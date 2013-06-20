@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :comment do
     user
+    article
     association :commentable, factory: :article
     body "Insert Text Here"
   end

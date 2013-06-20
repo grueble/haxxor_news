@@ -1,11 +1,8 @@
 HaxxorNews::Application.routes.draw do
   resources :articles, :only => [ :show, :new, :create, :index ] do
-    resources :comments, :only => [ :show, :create ] do
-      member do
-        post 'reply'
-      end
-    end
+    resources :comments, :only => [ :create ]
   end
+  resources :comments, :only => [ :show ]
   resources :users, :only => [ :show, :new, :create ]
   resource :session, :only => [ :new, :create, :destroy ]
   

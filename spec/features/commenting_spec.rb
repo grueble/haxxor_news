@@ -29,7 +29,7 @@ describe "the comment submission process" do
     end
     
     it "is able to view an individual comment" do
-      visit "/articles/#{article.id}/comments/#{comment.id}"
+      visit "/comments/#{comment.id}"
       
       page.should have_content "Generic Text Submission"
     end

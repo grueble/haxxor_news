@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe Comment do
   it { should allow_mass_assignment_of(:body) }
+  it { should allow_mass_assignment_of(:commentable_id) }
+  it { should allow_mass_assignment_of(:commentable_type) }
+  
   it { should validate_presence_of(:body) }
+  it { should validate_presence_of(:user_id) }
+  it { should validate_presence_of(:article_id) }
   
   it { should belong_to(:commentable) }
   
