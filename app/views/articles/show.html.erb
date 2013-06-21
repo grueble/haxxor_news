@@ -1,39 +1,21 @@
 <div>
   <%= link_to @article.title, @article.link %>
   (<%= @article.domain %>)
-  by <strong><%= link_to @article.user.username, user_path(@article.user) %></strong>
+  by <strong><%= link_to @article.user %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
 </div>
 
 <% if logged_in? %>
 <br>
-  <%= form_for @comment, :url => article_comments_path(@article) do |form| %>
-    <% if @comment.errors.present? %>
-      <ul>
-        <% @comment.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    <% end %>
-    
-    <fieldset>
-      <%= form.text_area(:body, :cols => 80, :rows => 10) %>
-    </fieldset>
-    
-    <fieldset>
-      <%= form.submit "Add Comment", :class => 'btn btn-primary' %>
-    </fieldset>
-  <% end %>
+  <%= render :partial => 'comments/form', :locals => {
+    :comment => @new_comment,
+    :commentable => @article } 
+  %>
 <% end %>
 
-<% @article.comments.each do |comment| %>
-  by <strong><%= link_to "#{comment.user}", user_path(comment.user) %></strong>
-  posted <%= time_ago_in_words comment.created_at %> ago
-  <%= link_to 'Show', article_comment_path(@article, comment) %>
-  <br>
-  <%= comment.body %>
-<% end %>
+<%= render :partial => 'comments/list', :locals => { :comments => @article.comments } %>
   
 <% if !logged_in? %>
+  <%= link_to 'Create Account', new_user_path %>
   <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
 <% end %>

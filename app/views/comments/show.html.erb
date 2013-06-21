@@ -1,6 +1,18 @@
 <div>
-  by <strong><%= @comment.user %></strong>
+  by <strong><%= link_to @comment.user %></strong>
   posted <%= time_ago_in_words @comment.created_at %> ago
   <br>
   <%= @comment.body %>
 </div>
+
+<% if logged_in? %>
+  <br>
+  <%= render :partial => 'comments/form', :locals => {:comment => Comment.new, :commentable => @comment} %>
+<% end %>
+
+<%= render :partial => 'comments/list', :locals => { :comments => @comment.comments } %>
+
+<% if !logged_in? %>
+  <%= link_to 'Create Account', new_user_path %>
+  <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
+<% end %>

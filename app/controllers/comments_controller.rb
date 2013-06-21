@@ -1,22 +1,20 @@
 class CommentsController < ApplicationController
-  before_filter :login_required, :only => [ :new, :create ]
-  
-  def new
-    @comment = Comment.new
-  end
+  before_filter :login_required, :only => [ :create ]
   
   def show
     @comment = Comment.find(params[:id])
   end
   
   def create
-    @article = Article.find(params[:article_id])
-    @comment = current_user.comments.build(params[:comment])
-    @comment.commentable = @article
-    if @comment.save
-      redirect_to @article, :notice => "You have successfully posted a comment"
+    comment = current_user.comments.build(params[:comment])
+    if comment.save
+      redirect_to comment.commentable, :notice => "You have successfully posted a comment"
     else
-      render 'articles/show'
+      if comment.commentable
+        redirect_to comment.commentable, :alert => "Comment must have text"
+      else
+        redirect_to root_url, :alert => "We weren't able to save your comment at this time"
+      end
     end
   end
 end

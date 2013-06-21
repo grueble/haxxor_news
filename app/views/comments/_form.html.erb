@@ -1,0 +1,12 @@
+<%= form_for comment do |form| %>
+
+  <fieldset>
+    <%= form.hidden_field :commentable_id, :value => commentable.id %>
+    <%= form.hidden_field :commentable_type, :value => commentable.class.name %>
+    <%= form.text_area(:body, :cols => 80, :rows => 10) %>
+  </fieldset>
+      
+  <fieldset>
+    <%= form.submit "Add Comment", :class => 'btn btn-primary' %>
+  </fieldset>
+<% end %>
