@@ -16,8 +16,8 @@ describe CommentsController do
       login_as(user)
     end
     describe "adding a comment" do
-      before { post :create, :comment => { } }
       context "with invalid data" do
+        before { post :create, :comment => { } }
         describe "the request" do    
           it { should redirect_to(root_url) }
         end
