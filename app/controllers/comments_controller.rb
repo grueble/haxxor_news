@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
     end
   end
   
+  private
+  
   def load_commentable
     @commentable = params[:comment][:commentable_type].constantize.find(params[:comment][:commentable_id])
   end

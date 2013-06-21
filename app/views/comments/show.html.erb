@@ -6,7 +6,7 @@
 </div>
 
 <% if logged_in? %>
-<br>
+  <br>
   <%= render :partial => 'comments/form', :locals => {:comment => Comment.new, :commentable => @comment} %>
 <% end %>
 
