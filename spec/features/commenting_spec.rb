@@ -20,7 +20,7 @@ describe "the comment submission process" do
       page.should have_content 'Generic Text Submission'
     end
     
-    it "is unable to create a comment with no body" do
+    it "is unable to create a comment with no body on an article" do
       visit "/articles/#{article.id}"
       
       click_button "Add Comment"
@@ -42,6 +42,14 @@ describe "the comment submission process" do
       click_button "Add Comment"
       
       page.should have_content "Generic Text Submission"
+    end
+    
+    it "is unable to create a comment with no body on an comment" do
+      visit "/comments/#{comment.id}"
+      
+      click_button "Add Comment"
+      
+      page.should have_content "Comment must have text"
     end
   end
 end
