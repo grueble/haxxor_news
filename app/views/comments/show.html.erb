@@ -1,6 +1,8 @@
 <div>
-  by <strong><%= link_to @comment.user %></strong>
-  posted <%= time_ago_in_words @comment.created_at %> ago
+  <small>
+    by <strong><%= link_to @comment.user %></strong>
+    posted <%= time_ago_in_words @comment.created_at %> ago
+  </small>
   <br>
   <%= @comment.body %>
 </div>
