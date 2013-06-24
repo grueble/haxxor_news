@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :comment do
     user
     association :commentable, factory: :article
-    body "Generic Text Submission"
+    body "Insert Text Here"
   end
 end
