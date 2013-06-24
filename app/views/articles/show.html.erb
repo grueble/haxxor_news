@@ -1,8 +1,17 @@
 <div>
-  <%= link_to @article.title, @article.link %>
-  (<%= @article.domain %>)
+  <strong>
+    <%= link_to @article.title, @article.link %>
+    (<%= @article.domain %>)
+  </strong>
+  <br>
+  <%# put the number of votes here %> points
   by <strong><%= link_to @article.user %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
+  <fieldset>
+    <% if logged_in? %>
+      <%= button_to("Upvote", article_votes_path(@article), :method => 'create', :class => 'btn btn-success') %>
+    <% end %>
+  </fieldset>
 </div>
 
 <% if logged_in? %>
@@ -14,8 +23,9 @@
 <% end %>
 
 <%= render :partial => 'comments/list', :locals => { :comments => @article.comments } %>
-  
+ 
 <% if !logged_in? %>
   <%= link_to 'Create Account', new_user_path %>
   <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
 <% end %>
+  

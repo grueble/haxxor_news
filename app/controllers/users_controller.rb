@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       redirect_to @user, :notice => "You have succesfully created an account"
+      sign_in(@user)
     else
       render "new"
     end

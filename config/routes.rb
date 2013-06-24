@@ -1,6 +1,7 @@
 HaxxorNews::Application.routes.draw do
   resources :articles, :only => [ :show, :new, :create, :index ] do
     resources :comments, :only => :create
+    resources :votes, :only => :create
   end
   resources :comments, :only => :show do
     resources :comments, :only => :create

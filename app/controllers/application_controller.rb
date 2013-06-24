@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+  
+  def sign_in(user)
+    session[:current_user_id] = user.id
+  end
 end
