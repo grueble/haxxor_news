@@ -1,8 +1,6 @@
-<%= form_for comment do |form| %>
+<%= form_for comment, :url => commentable_comments_path(commentable) do |form| %>
 
   <fieldset>
-    <%= form.hidden_field :commentable_id, :value => commentable.id %>
-    <%= form.hidden_field :commentable_type, :value => commentable.class.name %>
     <%= form.text_area(:body, :cols => 80, :rows => 10) %>
   </fieldset>
       

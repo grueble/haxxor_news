@@ -34,7 +34,7 @@ describe "the comment submission process" do
       page.should have_content "Generic Text Submission"
     end
     
-    it "creates a comment on an comment" do
+    it "creates a comment on a comment" do
       visit "/comments/#{comment.id}"
       
       fill_in 'comment_body', :with => "Generic Text Submission"
