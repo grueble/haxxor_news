@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
   before_filter :login_required, :only => [:destroy]
-  before_filter :logout_required, :only => [:create, :new]
+  before_filter :logout_required, :only => [:create, :new ]
   
   def new; end
   
   def create
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
-      session[:current_user_id] = user.id
+      sign_in(user)
       redirect_to root_url, :notice => "You have successfully been signed in"
     else
       flash.now[:alert] = "Invalid username/password combination"
