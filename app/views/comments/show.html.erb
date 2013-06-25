@@ -1,5 +1,6 @@
 <div>
   <small>
+    <%= @comment.votes.length %> points
     by <strong><%= link_to @comment.user %></strong>
     posted <%= time_ago_in_words @comment.created_at %> ago
   </small>
@@ -8,6 +9,11 @@
 </div>
 
 <% if logged_in? %>
+  <fieldset>
+    <% if logged_in? %>
+      <%= button_to("Upvote", comment_votes_path(@comment), :method => 'create', :class => 'btn btn-success') %>
+    <% end %>
+  </fieldset>
   <br>
   <%= render :partial => 'comments/form', :locals => {:comment => Comment.new, :commentable => @comment} %>
 <% end %>

@@ -5,6 +5,7 @@ HaxxorNews::Application.routes.draw do
   end
   resources :comments, :only => :show do
     resources :comments, :only => :create
+    resources :votes, :only => :create
   end
   resources :users, :only => [ :show, :new, :create ]
   resource :session, :only => [ :new, :create, :destroy ]
