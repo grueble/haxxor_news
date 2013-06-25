@@ -7,15 +7,15 @@
   <%= @article.votes.length %> points
   by <strong><%= link_to @article.user %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
-  <fieldset>
-    <% if logged_in? %>
-      <%= button_to("Upvote", article_votes_path(@article), :method => 'create', :class => 'btn btn-success') %>
-    <% end %>
-  </fieldset>
 </div>
-
 <% if logged_in? %>
-<br>
+  <div class="btn-toolbar">
+    <div class="btn-group btn-group-horizontal">
+      <%= button_to("Upvote", article_votes_path(@article), :method => 'create', :class => 'btn btn-success') %>
+      <%= button_to("Downvote", article_vote_path(@article), :method => 'delete', :class => 'btn btn-danger') %>
+    </div>
+  </div>
+  <br>
   <%= render :partial => 'comments/form', :locals => {
     :comment => @new_comment,
     :commentable => @article } 

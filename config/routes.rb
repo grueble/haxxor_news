@@ -1,11 +1,11 @@
 HaxxorNews::Application.routes.draw do
   resources :articles, :only => [ :show, :new, :create, :index ] do
     resources :comments, :only => :create
-    resources :votes, :only => :create
+    resources :votes, :only => [ :create, :destroy ]
   end
   resources :comments, :only => :show do
     resources :comments, :only => :create
-    resources :votes, :only => :create
+    resources :votes, :only => [ :create, :destroy ]
   end
   resources :users, :only => [ :show, :new, :create ]
   resource :session, :only => [ :new, :create, :destroy ]
