@@ -4,7 +4,7 @@
     (<%= @article.domain %>)
   </strong>
   <br>
-  <%# put the number of votes here %> points
+  <%= @article.votes.length %> points
   by <strong><%= link_to @article.user %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
   <fieldset>
