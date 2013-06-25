@@ -3,5 +3,7 @@
 FactoryGirl.define do
   factory :vote do
     user
+    association :votable, factory: :article
+    association :votable, factory: :comment
   end
 end
