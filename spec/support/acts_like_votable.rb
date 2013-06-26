@@ -16,8 +16,8 @@ shared_examples "a votable" do
   
   describe '#score' do
     it "correctly sums the score of a votable object" do 
-      create(:vote, :votable => subject, :user => create(:user), :sign => 1)
-      create(:vote, :votable => subject, :user => create(:user), :sign => 1)
+      create(:vote, :votable => subject, :user => create(:user))
+      create(:vote, :votable => subject, :user => create(:user))
       create(:vote, :votable => subject, :user => create(:user), :sign => -1)
       
       subject.score.should == 1
