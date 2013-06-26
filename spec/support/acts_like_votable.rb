@@ -2,7 +2,7 @@ shared_examples "a votable" do
   it { should have_many(:votes) }
   
   describe '#vote_for_user' do
-    let(:user){ create(:user) }
+    let(:user) { create(:user) }
 
     it "find an existing vote for the provided user" do
       vote = create(:vote, :votable => subject, :user => user)
@@ -15,6 +15,11 @@ shared_examples "a votable" do
   end
   
   describe '#score' do
+    let(:user) { create(:user) }
     
+    it "correctly sums the score of a votable object" do 
+      vote = create(:vote, :votable => subject, :user => user)
+      subject.score.should == 1
+    end
   end
 end
