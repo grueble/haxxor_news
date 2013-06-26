@@ -16,6 +16,6 @@ class VotesController < ApplicationController
   private
   
   def load_votable
-    @votable = params[:article_id].present? ? load_article : load_comment
+    @votable = load_parent
   end
 end
