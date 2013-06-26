@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Article do
+  subject { create(:article) }
+
+  it_should_behave_like "a votable"
+
   it { should allow_mass_assignment_of(:title) }
   it { should allow_mass_assignment_of(:link) }
   it { should validate_presence_of(:title) }

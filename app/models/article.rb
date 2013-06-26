@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include Votable
+
   attr_accessible :title, :link
   validates :title, :link, :user_id, :presence => true
   
@@ -9,7 +11,6 @@ class Article < ActiveRecord::Base
   belongs_to :user
   
   has_many :comments, :as => :commentable
-  has_many :votes, :as => :votable
 
   def domain
     URI.parse(link).host
