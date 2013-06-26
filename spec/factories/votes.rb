@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :vote do
     user
-    association :votable, factory: [ :article, :comment ]
+    association :votable, :factory => :article
+    sign 1
   end
 end

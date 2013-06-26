@@ -1,20 +1,14 @@
 class VotesController < ApplicationController
-  before_filter :load_votable, :only => [ :create, :destroy ]
+  before_filter :login_required
+  before_filter :load_votable
   
   def create 
-    @vote = @votable.votes.build(params[:vote])
-    @vote.user = current_user
+    @vote = @votable.vote_for_user(current_user)
+    @vote.attributes = { :sign => params[:sign] }
     if @vote.save
-      redirect_to @votable
-    end
-  end
-  
-  def destroy
-    if !(@votable.votes.empty?)
-      @votable.votes.first.destroy
-      redirect_to @votable
+      redirect_to @votable, :notice => 'You have successfully placed a vote'
     else
-      redirect_to root_url
+      redirect_to @votable, :alert => 'There was a problem savng your vote'
     end
   end
   
