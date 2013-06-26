@@ -1,12 +1,21 @@
 <div>
-  <%= link_to @article.title, @article.link %>
-  (<%= @article.domain %>)
-  by <strong><%= link_to @article.user %></strong>
+  <strong>
+    <%= link_to @article.title, @article.link %>
+    (<%= @article.domain %>)
+  </strong>
+  <br>
+  <%= pluralize(@article.score, 'point') %>
+  by <strong><%= link_to @article.user.username, @article.user %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
 </div>
-
 <% if logged_in? %>
-<br>
+  <div class="btn-toolbar">
+    <div class="btn-group btn-group-horizontal">
+      <%= button_to("Upvote", article_upvote_path(@article), :method => :post, :class => 'btn btn-success') %>
+      <%= button_to("Downvote", article_downvote_path(@article), :method => :post, :class => 'btn btn-danger') %>
+    </div>
+  </div>
+  <br>
   <%= render :partial => 'comments/form', :locals => {
     :comment => @new_comment,
     :commentable => @article } 
@@ -14,7 +23,7 @@
 <% end %>
 
 <%= render :partial => 'comments/list', :locals => { :comments => @article.comments } %>
-  
+ 
 <% if !logged_in? %>
   <%= link_to 'Create Account', new_user_path %>
   <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>

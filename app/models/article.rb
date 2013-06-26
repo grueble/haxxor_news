@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include Votable
+
   attr_accessible :title, :link
   validates :title, :link, :user_id, :presence => true
   

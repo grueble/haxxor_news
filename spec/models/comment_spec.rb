@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Comment do
+  subject { create(:comment) }
+
+  it_should_behave_like "a votable"
+  
   it { should allow_mass_assignment_of(:body) }
   
   it { should validate_presence_of(:body) }

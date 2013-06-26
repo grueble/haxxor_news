@@ -2,9 +2,12 @@
   <ul>
     <% comments.each do |comment| %>
       <li>
-        by <strong><%= link_to comment.user %></strong>
-        posted <%= time_ago_in_words comment.created_at %> ago
-        <%= link_to 'Show', comment_path(comment) %>
+        <small>
+          <%= pluralize(comment.score, 'point') %>
+          by <strong><%= link_to comment.user.username, comment.user %></strong>
+          posted <%= time_ago_in_words comment.created_at %> ago
+          <%= link_to 'Show', comment_path(comment) %>
+        </small>
         <br>
         <%= comment.body %>
         <%= render :partial => 'comments/list', :locals => { :comments => comment.comments } %>

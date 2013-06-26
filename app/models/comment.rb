@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  include Votable
+  
   attr_accessible :body
   
   belongs_to :commentable, :polymorphic => true

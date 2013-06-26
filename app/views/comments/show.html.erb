@@ -1,11 +1,20 @@
 <div>
-  by <strong><%= link_to @comment.user %></strong>
-  posted <%= time_ago_in_words @comment.created_at %> ago
+  <small>
+    <%= pluralize(@comment.score, 'point') %>
+    by <strong><%= link_to @comment.user.username, @comment.user %></strong>
+    posted <%= time_ago_in_words @comment.created_at %> ago
+  </small>
   <br>
   <%= @comment.body %>
 </div>
 
 <% if logged_in? %>
+  <div class="btn-toolbar">
+    <div class="btn-group btn-group-horizontal">
+      <%= button_to("Upvote", comment_upvote_path(@comment), :method => :post, :class => 'btn btn-success') %>
+      <%= button_to("Downvote", comment_downvote_path(@comment), :method => :post, :class => 'btn btn-danger') %>
+    </div>
+  </div>
   <br>
   <%= render :partial => 'comments/form', :locals => {:comment => Comment.new, :commentable => @comment} %>
 <% end %>

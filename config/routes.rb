@@ -1,9 +1,19 @@
 HaxxorNews::Application.routes.draw do
   resources :articles, :only => [ :show, :new, :create, :index ] do
     resources :comments, :only => :create
+    
+    with_options :to => 'votes#create' do |routes|
+      routes.post 'upvote', :sign => 1
+      routes.post 'downvote', :sign => -1
+    end
   end
   resources :comments, :only => :show do
     resources :comments, :only => :create
+    
+    with_options :to => 'votes#create' do |routes|
+      routes.post 'upvote', :sign => 1
+      routes.post 'downvote', :sign => -1
+    end
   end
   resources :users, :only => [ :show, :new, :create ]
   resource :session, :only => [ :new, :create, :destroy ]
