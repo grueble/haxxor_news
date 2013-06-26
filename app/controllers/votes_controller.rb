@@ -4,8 +4,7 @@ class VotesController < ApplicationController
   
   def create 
     @vote = @votable.vote_for_user(current_user)
-    @vote.attributes = { :sign => params[:sign] }
-    if @vote.save
+    if @vote.update_attributes(:sign => params[:sign])
       flash[:notice] = 'You have successfully placed a vote'
     else
       flash[:alert] = 'There was a problem saving your vote'
