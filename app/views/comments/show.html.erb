@@ -1,7 +1,7 @@
 <div>
   <small>
-    <%= @comment.votes.length %> points
-    by <strong><%= link_to @comment.user %></strong>
+    <%= @comment.votes.sum("sign") %> points
+    by <strong><%= link_to @comment.user.username, user_path(@comment) %></strong>
     posted <%= time_ago_in_words @comment.created_at %> ago
   </small>
   <br>

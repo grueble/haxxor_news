@@ -4,8 +4,8 @@
     (<%= @article.domain %>)
   </strong>
   <br>
-  <%= @article.votes.length %> points
-  by <strong><%= link_to @article.user %></strong>
+  <%= @article.votes.sum("sign") %> points
+  by <strong><%= link_to @article.user.username, user_path(@article) %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
 </div>
 <% if logged_in? %>
