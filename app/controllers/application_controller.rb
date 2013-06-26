@@ -33,14 +33,10 @@ class ApplicationController < ActionController::Base
   end
   
   def load_parent
-    @parent = params[:article_id].present? ? load_article : load_comment
-  end
-  
-  def load_article
-    Article.find(params[:article_id])
-  end
-  
-  def load_comment
-    Comment.find(params[:comment_id])
+    @parent = if params[:article_id].present?
+      Article.find(params[:article_id])
+    else
+      Comment.find(params[:comment_id])
+    end
   end
 end
