@@ -1,0 +1,3 @@
+<%= pluralize(posting.score, 'point') %>
+by <strong><%= link_to posting.user.username, posting.user %></strong>
+posted <%= time_ago_in_words posting.created_at %> ago
