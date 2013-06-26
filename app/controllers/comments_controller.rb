@@ -19,10 +19,6 @@ class CommentsController < ApplicationController
   private
   
   def load_commentable
-    @commentable = if params[:article_id].present?
-      Article.find(params[:article_id])
-    else
-      Comment.find(params[:comment_id])
-    end
+    @commentable = params[:article_id].present? ? load_article : load_comment
   end
 end

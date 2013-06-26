@@ -31,4 +31,12 @@ class ApplicationController < ActionController::Base
   def sign_in(user)
     session[:current_user_id] = user.id
   end
+  
+  def load_article
+    Article.find(params[:article_id])
+  end
+  
+  def load_comment
+    Comment.find(params[:comment_id])
+  end
 end
