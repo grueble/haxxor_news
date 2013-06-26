@@ -4,7 +4,7 @@
     (<%= @article.domain %>)
   </strong>
   <br>
-  <%= render :partial => 'shared/body', :locals => { :votable => @article } %>
+  <%= render :partial => 'shared/posting_metadata', :locals => { :posting => @article } %>
 </div>
 <% if logged_in? %>
   <div class="btn-toolbar">

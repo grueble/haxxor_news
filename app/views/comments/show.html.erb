@@ -1,6 +1,6 @@
 <div>
   <small>
-    <%= render :partial => 'shared/body', :locals => { :votable => @comment } %>
+    <%= render :partial => 'shared/posting_metadata', :locals => { :posting => @comment } %>
   </small>
   <br>
   <%= @comment.body %>
