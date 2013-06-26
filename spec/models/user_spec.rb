@@ -18,6 +18,8 @@ describe User do
   
   it { should have_many(:comments) }
   
+  it { should have_many(:votes) }
+  
   describe '#to_s' do
     subject { create(:user) }
     

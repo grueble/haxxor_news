@@ -13,4 +13,8 @@ shared_examples "a votable" do
       subject.vote_for_user(user).should be_new_record
     end
   end
+  
+  describe '#score' do
+    
+  end
 end
