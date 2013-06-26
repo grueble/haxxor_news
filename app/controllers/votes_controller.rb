@@ -8,7 +8,7 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to @votable, :notice => 'You have successfully placed a vote'
     else
-      redirect_to @votable, :alert => 'There was a problem savng your vote'
+      redirect_to @votable, :alert => 'There was a problem saving your vote'
     end
   end
   
