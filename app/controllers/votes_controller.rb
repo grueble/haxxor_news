@@ -16,10 +16,6 @@ class VotesController < ApplicationController
   private
   
   def load_votable
-    @votable = if params[:article_id].present?
-      Article.find(params[:article_id])
-    else
-      Comment.find(params[:comment_id])
-    end
+    @votable = params[:article_id].present? ? load_article : load_comment
   end
 end
