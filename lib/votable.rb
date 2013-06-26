@@ -9,7 +9,7 @@ module Votable
     votes.first_or_initialize({:user_id => user.id}, {:without_protection => true})
   end
   
-  def score(votable)
-    votable.votes.sum("sign")
+  def score
+    votes.sum("sign")
   end
 end
