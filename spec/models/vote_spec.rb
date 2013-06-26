@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Vote do
-  subject { create(:vote) }
+  subject { create(:upvote) }
   
   it { should allow_mass_assignment_of(:sign) }
   it { should_not allow_mass_assignment_of(:user_id) }

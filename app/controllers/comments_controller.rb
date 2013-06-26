@@ -19,6 +19,6 @@ class CommentsController < ApplicationController
   private
   
   def load_commentable
-    @commentable = params[:article_id].present? ? load_article : load_comment
+    @commentable = load_parent
   end
 end

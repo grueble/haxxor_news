@@ -32,6 +32,10 @@ class ApplicationController < ActionController::Base
     session[:current_user_id] = user.id
   end
   
+  def load_parent
+    @parent = params[:article_id].present? ? load_article : load_comment
+  end
+  
   def load_article
     Article.find(params[:article_id])
   end

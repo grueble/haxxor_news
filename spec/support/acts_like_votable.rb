@@ -5,7 +5,7 @@ shared_examples "a votable" do
     let(:user) { create(:user) }
 
     it "find an existing vote for the provided user" do
-      vote = create(:vote, :votable => subject, :user => user)
+      vote = create(:upvote, :votable => subject, :user => user)
       subject.vote_for_user(user).should == vote
     end
 
@@ -16,9 +16,9 @@ shared_examples "a votable" do
   
   describe '#score' do
     it "correctly sums the score of a votable object" do 
-      create(:vote, :votable => subject, :user => create(:user), :sign => 1)
-      create(:vote, :votable => subject, :user => create(:user), :sign => 1)
-      create(:vote, :votable => subject, :user => create(:user), :sign => -1)
+      create(:upvote, :votable => subject, :user => create(:user), :sign => 1)
+      create(:upvote, :votable => subject, :user => create(:user), :sign => 1)
+      create(:downvote, :votable => subject, :user => create(:user), :sign => -1)
       
       subject.score.should == 1
     end
