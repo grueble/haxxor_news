@@ -4,15 +4,15 @@
     (<%= @article.domain %>)
   </strong>
   <br>
-  <%= @article.score %> points
-  by <strong><%= link_to @article.user.username, user_path(@article.user) %></strong>
+  <%= pluralize(@article.score, 'point') %>
+  by <strong><%= link_to @article.user.username, @article.user %></strong>
   posted <%= time_ago_in_words @article.created_at %> ago
 </div>
 <% if logged_in? %>
   <div class="btn-toolbar">
     <div class="btn-group btn-group-horizontal">
-      <%= button_to("Upvote", article_upvote_path(@article), :method => 'create', :class => 'btn btn-success') %>
-      <%= button_to("Downvote", article_downvote_path(@article), :method => 'create', :class => 'btn btn-danger') %>
+      <%= button_to("Upvote", article_upvote_path(@article), :method => :post, :class => 'btn btn-success') %>
+      <%= button_to("Downvote", article_downvote_path(@article), :method => :post, :class => 'btn btn-danger') %>
     </div>
   </div>
   <br>
@@ -28,4 +28,3 @@
   <%= link_to 'Create Account', new_user_path %>
   <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
 <% end %>
-  

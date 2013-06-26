@@ -6,10 +6,11 @@ class VotesController < ApplicationController
     @vote = @votable.vote_for_user(current_user)
     @vote.attributes = { :sign => params[:sign] }
     if @vote.save
-      redirect_to @votable, :notice => 'You have successfully placed a vote'
+      flash[:notice] = 'You have successfully placed a vote'
     else
-      redirect_to @votable, :alert => 'There was a problem saving your vote'
+      flash[:alert] = 'There was a problem saving your vote'
     end
+    redirect_to @votable
   end
   
   private
