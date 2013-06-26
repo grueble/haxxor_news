@@ -15,10 +15,11 @@ shared_examples "a votable" do
   end
   
   describe '#score' do
-    let(:user) { create(:user) }
-    
     it "correctly sums the score of a votable object" do 
-      vote = create(:vote, :votable => subject, :user => user)
+      vote1 = create(:vote, :votable => subject, :user => create(:user), :sign => 1)
+      vote2 = create(:vote, :votable => subject, :user => create(:user), :sign => 1)
+      vote3 = create(:vote, :votable => subject, :user => create(:user), :sign => -1)
+      
       subject.score.should == 1
     end
   end
