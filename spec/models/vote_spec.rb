@@ -4,6 +4,9 @@ describe Vote do
   subject { create(:vote) }
   
   it { should allow_mass_assignment_of(:sign) }
+  it { should_not allow_mass_assignment_of(:user_id) }
+  it { should_not allow_mass_assignment_of(:votable_id) }
+  it { should_not allow_mass_assignment_of(:votable_type) }
   
   it { should validate_uniqueness_of(:user_id).scoped_to(:votable_id, :votable_type) }
   
