@@ -17,6 +17,7 @@ HaxxorNews::Application.routes.draw do
   end
   resources :users, :only => [ :show, :new, :create ]
   resource :session, :only => [ :new, :create, :destroy ]
+  resources :rating, :only => [ :create ]
   
   root :to => 'articles#index'
   
