@@ -10,6 +10,7 @@ shared_examples "a votable" do
     end
 
     it "builds a vote for the existing user if one does not exist" do
+      create(:upvote, :votable => subject)
       subject.vote_for_user(user).should be_new_record
     end
   end

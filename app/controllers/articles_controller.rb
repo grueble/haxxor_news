@@ -20,6 +20,10 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.by_created_at.page(params[:page])
+    if params[:sort] == "rating"
+      @articles = Article.by_rating.page(params[:page])
+    else
+      @articles = Article.by_created_at.page(params[:page])
+    end
   end
 end

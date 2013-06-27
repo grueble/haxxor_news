@@ -23,6 +23,18 @@ describe Article do
       Article.by_created_at.should == [ article2, article1 ]
     end
   end
+  
+  describe '.by_rating' do
+    let!(:article1) { create(:article) }
+    let!(:article2) { create(:article) }
+    let!(:article3) { create(:article) }
+    
+    it "returns all articles in the correct order" do
+      2.times { create(:upvote, :votable => article1) }
+      create(:upvote, :votable => article2)
+      Article.by_rating.should == [ article1, article2, article3 ]
+    end
+  end
 
   context 'validating link' do
     subject { build(:article) }

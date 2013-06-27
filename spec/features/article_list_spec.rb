@@ -5,7 +5,21 @@ describe "the article listing process" do
   let!(:article2) { create(:article, :created_at => 5.seconds.ago,  :title => "First") }
   
   it "lists all articles" do
-    visit '/articles'
+    visit '/'
+    
+    page.should have_content "First"
+    page.should have_content "Second"
+  end
+  
+  it "lists all articles by rating" do
+    visit '/rating'
+    
+    page.should have_content "First"
+    page.should have_content "Second"
+  end
+  
+  it "lists all articles by newest" do
+    visit '/newest'
     
     page.should have_content "First"
     page.should have_content "Second"

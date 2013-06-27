@@ -12,6 +12,11 @@ class Article < ActiveRecord::Base
   
   has_many :comments, :as => :commentable
 
+  def self.by_rating
+    join_sql = %q(LEFT JOIN "votes" ON "votes"."votable_id" = "articles"."id" AND "votes"."votable_type" = 'Article')
+    joins(join_sql).group("articles.id").order("SUM(sign) IS NULL, SUM(sign) DESC")
+  end
+
   def domain
     URI.parse(link).host
   end

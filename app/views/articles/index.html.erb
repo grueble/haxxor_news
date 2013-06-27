@@ -1,3 +1,7 @@
+<%= link_to "Best", rating_path %>
+<%= link_to "Index", newest_path %>
+<br>
+
 <% @articles.each do |article| %>
   <strong>
     <%= link_to article.title, article.link %>
@@ -15,11 +19,11 @@
 <%= link_to 'New Article', new_article_path %>
 
 <br>
-<div class="btn-toolbar"> 
+<div> 
   <% if logged_in? %>
     <%= button_to("Sign Out", session_path, :method => 'delete', :class => 'btn btn-primary') %>
   <% else %>
-    <%= link_to 'Create Account', new_user_path %>
+    <%= link_to 'Create Account', new_user_path, :class => 'btn btn-primary' %>
     <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
   <% end %>
 </div>

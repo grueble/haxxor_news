@@ -6,7 +6,7 @@ module Votable
   end
   
   def vote_for_user(user)
-    votes.first_or_initialize({:user_id => user.id}, {:without_protection => true})
+    votes.where({:user_id => user.id}).first_or_initialize
   end
   
   def score
