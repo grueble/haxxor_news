@@ -1,14 +1,22 @@
-<div>
-  <strong>
-    <%= link_to @article.title, @article.link %>
-    (<%= @article.domain %>)
-  </strong>
-  <br>
-  <%= render :partial => 'shared/posting_metadata', :locals => { :posting => @article } %>
+<div class="container">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>
+          <strong>
+            <%= link_to @article.title, @article.link %>
+            (<%= @article.domain %>)
+          </strong>
+          <%= render :partial => 'shared/posting_metadata', :locals => { :posting => @article } %>
+        </td>
+      </tr>
+    <tbody>
+  </table>
 </div>
+
 <% if logged_in? %>
-  <div class="btn-toolbar">
-    <div class="btn-group btn-group-horizontal">
+  <div class="btn-container">
+    <div class="btn-group">
       <%= button_to("Upvote", article_upvote_path(@article), :class => 'btn btn-success') %>
       <%= button_to("Downvote", article_downvote_path(@article), :class => 'btn btn-danger') %>
     </div>

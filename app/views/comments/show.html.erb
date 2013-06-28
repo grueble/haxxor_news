@@ -1,9 +1,17 @@
-<div>
-  <small>
-    <%= render :partial => 'shared/posting_metadata', :locals => { :posting => @comment } %>
-  </small>
-  <br>
-  <%= @comment.body %>
+<div class="container">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>
+          <small>
+            <%= render :partial => 'shared/posting_metadata', :locals => { :posting => @comment } %>
+          </small>
+          <br>
+          <%= @comment.body %>
+        </td>
+      </tr>
+    <tbody>
+  </table>
 </div>
 
 <% if logged_in? %>
