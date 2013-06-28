@@ -7,6 +7,7 @@ class Article < ActiveRecord::Base
   validate :link_is_a_valid_uri
 
   scope :by_created_at, order("created_at DESC")
+  scope :for_date_range, lambda { |date_range| where(:created_at => date_range) }
   
   belongs_to :user
   

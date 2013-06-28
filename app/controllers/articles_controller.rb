@@ -20,10 +20,18 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    if params[:sort] == "rating"
-      @articles = Article.by_rating.page(params[:page])
+    @articles = if params[:sort] == "rating"
+      if params[:day]
+        Article.for_date_range(Time.new(params[:year], params[:month], params[:day]).all_day).by_rating.page(params[:page])
+      elsif params[:month]
+        Article.for_date_range(Time.new(params[:year], params[:month]).all_month).by_rating.page(params[:page])
+      elsif params[:day]
+        Article.for_date_range(Time.new(params[:year]).all_year).by_rating.page(params[:page])
+      else
+        Article.by_rating.page(params[:page])
+      end
     else
-      @articles = Article.by_created_at.page(params[:page])
+      Article.by_created_at.page(params[:page])
     end
   end
 end
