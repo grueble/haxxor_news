@@ -19,21 +19,21 @@ describe "the article listing process" do
   end
   
   it "lists all articles by rating for a particular year" do
-    visit "/rating/#{Time.now.year}"
+    visit "/top-rated/#{Time.now.year}"
     
     page.should have_content "First"
     page.should have_content "Second"
   end
   
   it "lists all articles by rating for a particular month" do
-    visit "/rating/#{Time.now.year}/#{Time.now.month}"
+    visit "/top-rated/#{Time.now.year}/#{Time.now.month}"
     
     page.should have_content "First"
     page.should have_content "Second"
   end
   
   it "lists all articles by rating for a particular day" do
-    visit "/rating/#{Time.now.year}/#{Time.now.month}/#{Time.now.day}"
+    visit "/top-rated/#{Time.now.year}/#{Time.now.month}/#{Time.now.day}"
     
     page.should have_content "First"
     page.should have_content "Second"

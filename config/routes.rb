@@ -20,11 +20,11 @@ HaxxorNews::Application.routes.draw do
   
   get 'newest', :to => 'articles#index', :sort => 'newest'
   get 'top-rated', :to => 'articles#index', :sort => 'rating', :as => 'top_rated'
-  get 'rating/:year', :to => 'articles#index', :as => 'top_rated_for_year', :sort => 'rating', 
+  get 'top-rated/:year', :to => 'articles#index', :as => 'top_rated_for_year', :sort => 'rating', 
     :constraints => {:year => /\d{4}/}
-  get 'rating/:year/:month', :to => 'articles#index', :as => 'top_rated_for_month', :sort => 'rating', 
+  get 'top-rated/:year/:month', :to => 'articles#index', :as => 'top_rated_for_month', :sort => 'rating', 
     :constraints => {:year => /\d{4}/, :month => /\d?\d/}
-  get 'rating/:year/:month/:day', :to => 'articles#index', :as => 'top_rated_for_day', :sort => 'rating', 
+  get 'top-rated/:year/:month/:day', :to => 'articles#index', :as => 'top_rated_for_day', :sort => 'rating', 
     :constraints => {:year => /\d{4}/, :month => /\d?\d/, :day => /\d?\d/}
   
   root :to => 'articles#index'
