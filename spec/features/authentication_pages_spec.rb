@@ -30,9 +30,7 @@ describe "the sign in process" do
     end
     
     it "signs a user out, i.e ends the session" do
-      visit '/articles'
-
-      click_button 'Sign Out'
+      visit '/session/logout'
 
       page.should have_content "You have successfully been signed out"
     end

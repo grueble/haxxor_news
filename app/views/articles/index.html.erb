@@ -3,26 +3,17 @@
     <div class="navbar-inner">
       <a class="brand" href="#">Haxxor News</a>
       <ul class="nav">
-        <li>
-          <%= link_to "Best", top_rated_path %></li>
-        <li>
-          <%= link_to "Best this Year", top_rated_for_year_path(Time.now.year) %></li>
-        <li>
-          <%= link_to "Best this Month", top_rated_for_month_path(Time.now.year, Time.now.month) %></li>
-        <li>
-          <%= link_to "Best this Day", top_rated_for_day_path(Time.now.year, Time.now.month, Time.now.day) %></li>
-        <li>
-          <%= link_to "Index", newest_path %></li>
-        <li>
-          <%= link_to 'New Article', new_article_path %></li>
+        <li><%= link_to "Best", top_rated_path %></li>
+        <li><%= link_to "Best this Year", top_rated_for_year_path(Time.now.year) %></li>
+        <li><%= link_to "Best this Month", top_rated_for_month_path(Time.now.year, Time.now.month) %></li>
+        <li><%= link_to "Best this Day", top_rated_for_day_path(Time.now.year, Time.now.month, Time.now.day) %></li>
+        <li><%= link_to "Index", newest_path %></li>
+        <li><%= link_to 'New Article', new_article_path %></li>
         <% if logged_in? %>
-          <li><a href="#">
-            <%= button_to("Sign Out", session_path, :method => 'delete') %></a></li>
+          <li><%= link_to "Sign Out", logout_session_path %></li>
         <% else %>
-          <li>
-            <%= link_to 'Create Account', new_user_path %></li>
-          <li>
-            <%= link_to "Sign In", new_session_path %></li>
+          <li><%= link_to 'Create Account', new_user_path %></li>
+          <li><%= link_to "Sign In", new_session_path %></li>
         <% end %>
       </ul>
     </div>
