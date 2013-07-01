@@ -5,7 +5,7 @@ describe "the sign in process" do
   
   context 'signed out' do
     it "signs a user in" do
-      visit '/session/new'
+      visit '/session/login'
       
       fill_in 'username', :with => "My Username"
       fill_in 'password', :with => 'password'
@@ -16,7 +16,7 @@ describe "the sign in process" do
     end
     
     it "fails to sign a user in" do
-      visit '/session/new'
+      visit '/session/login'
       
       click_button 'Sign In'
       

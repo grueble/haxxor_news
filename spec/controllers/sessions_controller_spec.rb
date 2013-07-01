@@ -11,7 +11,7 @@ describe SessionsController do
   end
   
   describe 'DELETE #destroy' do
-    before { delete :destroy, :method => 'delete' }
+    before { delete :destroy }
     it "destroys the current session" do
       session[:current_user_id].should be_nil
     end

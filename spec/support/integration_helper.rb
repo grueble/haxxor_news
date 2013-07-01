@@ -1,7 +1,7 @@
 module HaxxorNews
   module IntegrationHelper
     def sign_in_as(user)
-      visit '/session/new'
+      visit '/session/login'
       
       fill_in 'username', :with => user.username
       fill_in 'password', :with => user.password

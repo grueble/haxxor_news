@@ -16,9 +16,12 @@ HaxxorNews::Application.routes.draw do
     end
   end
   resources :users, :only => [ :show, :new, :create ]
-  resource :session, :only => [ :new, :create ] do
+  resource :session, :only => [ :create ] do
     with_options :to => 'sessions#destroy' do |routes|
-      routes.get 'logout', :method => 'delete'
+      routes.get 'logout'
+    end
+    with_options :to => 'sessions#new' do |routes|
+      routes.get 'login'
     end
   end
     
