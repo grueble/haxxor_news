@@ -17,15 +17,17 @@ HaxxorNews::Application.routes.draw do
   end
   resources :users, :only => [ :show, :new, :create ]
   resource :session, :only => [ :new, :create, :destroy ]
-  
-  get 'newest', :to => 'articles#index', :sort => 'newest'
-  get 'top-rated', :to => 'articles#index', :sort => 'rating', :as => 'top_rated'
-  get 'top-rated/:year', :to => 'articles#index', :as => 'top_rated_for_year', :sort => 'rating', 
-    :constraints => {:year => /\d{4}/}
-  get 'top-rated/:year/:month', :to => 'articles#index', :as => 'top_rated_for_month', :sort => 'rating', 
-    :constraints => {:year => /\d{4}/, :month => /\d?\d/}
-  get 'top-rated/:year/:month/:day', :to => 'articles#index', :as => 'top_rated_for_day', :sort => 'rating', 
-    :constraints => {:year => /\d{4}/, :month => /\d?\d/, :day => /\d?\d/}
+    
+  with_options :to => 'articles#index' do |routes|
+    routes.get 'newest', :to => 'articles#index', :sort => 'newest'
+    routes.get 'top-rated', :as => 'top_rated', :sort => 'rating'
+    routes.get 'top-rated/:year', :as => 'top_rated_for_year', :sort => 'rating', 
+      :constraints => {:year => /\d{4}/}
+    routes.get 'top-rated/:year/:month', :as => 'top_rated_for_month', :sort => 'rating',
+      :constraints => {:year => /\d{4}/, :month => /\d?\d/}
+    routes.get 'top-rated/:year/:month/:day', :as => 'top_rated_for_day', :sort => 'rating',
+      :constraints => {:year => /\d{4}/, :month => /\d?\d/, :day => /\d?\d/}
+  end
   
   root :to => 'articles#index'
   
