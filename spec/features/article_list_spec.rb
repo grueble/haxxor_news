@@ -37,6 +37,7 @@ describe "the article listing process" do
     visit "/top-rated/#{Time.now.year}/#{Time.now.month}/#{Time.now.day}"
     
     page.should have_content "First"
+    page.should_not have_content "Second"
   end
   
   it "lists all articles by newest" do
