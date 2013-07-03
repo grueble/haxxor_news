@@ -1,3 +1,4 @@
 <%= pluralize(posting.score, 'point') %>
 by <strong><%= link_to posting.user.username, posting.user %></strong>
 posted <%= time_ago_in_words posting.created_at %> ago
+| <%= link_to "show replies (#{posting.comments.count})", comment_path(posting.comments) %>

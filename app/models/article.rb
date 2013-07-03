@@ -15,7 +15,12 @@ class Article < ActiveRecord::Base
 
   def self.by_rating
     join_sql = %q(LEFT JOIN "votes" ON "votes"."votable_id" = "articles"."id" AND "votes"."votable_type" = 'Article')
-    joins(join_sql).group("articles.id").order("SUM(sign) IS NULL, SUM(sign) DESC")
+    order_sql = %q(
+      CASE WHEN SUM(sign) IS NULL THEN 0
+        ELSE SUM(sign)
+      END DESC
+    )
+    joins(join_sql).group("articles.id").order(order_sql)
   end
 
   def domain

@@ -36,7 +36,7 @@ class ArticleSorter
   end
 
   def time_from_params
-    Time.new(params[:year], params[:month], params[:day]).in_time_zone
+    Time.zone.local(params[:year].to_i, (params[:month]  || 1).to_i, (params[:day] || 1).to_i)
   end
 
   def time_detail_level

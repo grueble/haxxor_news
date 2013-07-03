@@ -15,12 +15,26 @@
 </div>
 
 <% if logged_in? %>
-  <div class="btn-container">
-    <div class="btn-group">
-      <%= button_to("Upvote", article_upvote_path(@article), :class => 'btn btn-success') %>
-      <%= button_to("Downvote", article_downvote_path(@article), :class => 'btn btn-danger') %>
+  <% if @article.vote_for_user(current_user).id == nil %>
+    <div class="btn-container">
+      <div class="btn-group">
+        <%= button_to("Upvote", article_upvote_path(@article), :class => 'btn btn-success') %>
+        <%= button_to("Downvote", article_downvote_path(@article), :class => 'btn btn-danger') %>
+      </div>
     </div>
-  </div>
+  <% elsif @article.vote_for_user(current_user).sign == 1 %>
+    <div class="btn-container">
+      <div class="btn-group">
+        <%= button_to("Downvote", article_downvote_path(@article), :class => 'btn btn-danger') %>
+      </div>
+    </div>
+  <% else %>
+    <div class="btn-container">
+      <div class="btn-group">
+        <%= button_to("Upvote", article_upvote_path(@article), :class => 'btn btn-success') %>
+      </div>
+    </div>
+  <% end %>
   <br>
   <%= render :partial => 'comments/form', :locals => {
     :comment => @new_comment,
@@ -29,8 +43,3 @@
 <% end %>
 
 <%= render :partial => 'comments/list', :locals => { :comments => @article.comments } %>
- 
-<% if !logged_in? %>
-  <%= link_to 'Create Account', new_user_path %>
-  <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
-<% end %>
