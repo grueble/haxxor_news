@@ -1,25 +1,22 @@
-<% @articles.each do |article| %>
-  <strong>
-    <%= link_to article.title, article.link %>
-    (<%= article.domain %>)
-  </strong>
-  <br>
-  <%= render :partial => 'shared/posting_metadata', :locals => { :posting => article } %>
-  <%= link_to 'Show', article %>
-  <br>
-<% end %>
+<div class="container">
+  <table class="table table-bordered">
+    <tbody>
+      <% @articles.each do |article| %>
+        <tr>
+          <td>
+            <strong>
+              <%= link_to article.title, article.link %>
+              (<%= article.domain %>)
+            </strong>
+            <br>
+            <%= render :partial => 'shared/posting_metadata', :locals => { :posting => article } %>
+            | <%= link_to 'Show', article %>
+            <br>
+          </td>
+        </tr>
+      <% end %>
+    <tbody>
+  </table>
+</div>
 
 <%= paginate @articles %>
-
-<br>
-<%= link_to 'New Article', new_article_path %>
-
-<br>
-<div class="btn-toolbar"> 
-  <% if logged_in? %>
-    <%= button_to("Sign Out", session_path, :method => 'delete', :class => 'btn btn-primary') %>
-  <% else %>
-    <%= link_to 'Create Account', new_user_path %>
-    <p>Already have an account? <%= link_to "Sign In", new_session_path %></p>
-  <% end %>
-</div>

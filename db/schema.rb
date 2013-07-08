@@ -45,5 +45,4 @@ ActiveRecord::Schema.define(:version => 20130625194906) do
     t.datetime "updated_at",                  :null => false
     t.integer  "sign",         :default => 1, :null => false
   end
-
 end

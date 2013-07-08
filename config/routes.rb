@@ -16,7 +16,21 @@ HaxxorNews::Application.routes.draw do
     end
   end
   resources :users, :only => [ :show, :new, :create ]
-  resource :session, :only => [ :new, :create, :destroy ]
+  resource :session, :only => :create 
+    
+  with_options :to => 'articles#index' do |routes|
+    routes.get 'newest', :sort => 'newest'
+    routes.get 'top-rated', :as => 'top_rated', :sort => 'rating'
+    routes.get 'top-rated/:year', :as => 'top_rated_for_year', :sort => 'rating', 
+      :constraints => {:year => /\d{4}/}
+    routes.get 'top-rated/:year/:month', :as => 'top_rated_for_month', :sort => 'rating',
+      :constraints => {:year => /\d{4}/, :month => /\d?\d/}
+    routes.get 'top-rated/:year/:month/:day', :as => 'top_rated_for_day', :sort => 'rating',
+      :constraints => {:year => /\d{4}/, :month => /\d?\d/, :day => /\d?\d/}
+  end
+  
+  get 'login', :to => 'sessions#new'
+  get 'logout', :to =>  'sessions#destroy'
   
   root :to => 'articles#index'
   

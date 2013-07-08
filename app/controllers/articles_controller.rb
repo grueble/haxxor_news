@@ -20,6 +20,6 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.by_created_at.page(params[:page])
+    @articles = ArticleSorter.new(params).results.page(params[:page])
   end
 end

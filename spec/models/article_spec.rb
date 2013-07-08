@@ -16,11 +16,42 @@ describe Article do
   it { should have_many(:comments) }
 
   describe '.by_created_at' do
-    let!(:article1) { create(:article, :created_at => 10.seconds.ago, :title => "Second") }
-    let!(:article2) { create(:article, :created_at => 5.seconds.ago,  :title => "First") }
+    let!(:article1) { create(:article, :created_at => 10.seconds.ago) }
+    let!(:article2) { create(:article, :created_at => 5.seconds.ago) }
     
     it "returns all articles in the correct order" do
       Article.by_created_at.should == [ article2, article1 ]
+    end
+  end
+  
+  describe '.by_rating' do
+    let!(:article1) { create(:article) }
+    let!(:article2) { create(:article) }
+    let!(:article3) { create(:article) }
+    
+    it "returns all articles in the correct order" do
+      2.times { create(:upvote, :votable => article1) }
+      create(:upvote, :votable => article2)
+      Article.by_rating.should == [ article1, article2, article3 ]
+    end 
+  end
+  
+  describe '.for_date_range' do
+    let!(:article1) { create(:article, :created_at => Time.now) }
+    let!(:article2) { create(:article, :created_at => 1.day.ago) }
+    let!(:article3) { create(:article, :created_at => 1.month.ago) }
+    let!(:article4) { create(:article, :created_at => 1.year.ago) }
+    
+    it "returns all articles in the correct order for a given day" do
+      Article.for_date_range(Time.now.all_day).should == [ article1 ]
+    end
+    
+    it "returns all articles in the correct order for a given month" do
+      Article.for_date_range(Time.now.all_month).should == [ article1, article2 ]
+    end
+    
+    it "returns all articles in the correct order for a given year" do
+      Article.for_date_range(Time.now.all_year).should == [ article1, article2, article3 ]
     end
   end
 

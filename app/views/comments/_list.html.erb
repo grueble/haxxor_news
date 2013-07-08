@@ -4,7 +4,7 @@
       <li>
         <small>
           <%= render :partial => 'shared/posting_metadata', :locals => { :posting => comment } %>
-          <%= link_to 'Show', comment_path(comment) %>
+          | <%= link_to 'Show', comment_path(comment) %>
         </small>
         <br>
         <%= comment.body %>
